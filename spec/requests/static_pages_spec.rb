@@ -1,3 +1,4 @@
+# could be either visit '/static_pages/about' or visit about_path
 require 'spec_helper'
 
 describe "Static pages" do
@@ -5,60 +6,61 @@ describe "Static pages" do
   let(:base_title) { "ESL Support" }
   
   # Test case belongs to a home page
-  describe "Home page" do
+  # describe "Home page" do
+    
+    # visit is a capybara function, simulate visiting webpage provided
+    #before {visit root_path}
     
     # Rspec disregards everything in this it condition, handled by capybara
-    it "should have the content 'ESL Support" do
-      
-      # visit is a capybara function, simulate visiting webpage provided
-      visit '/static_pages/home'
-      
+    #it "should have the content 'ESL Support" do
       #page variable provided by capybara, resulting page from above command
-      expect(page).to have_content('ESL Support')
-    end
+     # expect(page).to have_content('ESL Support')
+   # end
     
-    it "should have the right title" do
-      visit '/static_pages/home'
-      expect(page).to have_title("#{base_title} | Home")
-    end
+    #it "should have the base title" do 
+     # expect(page).to have_title("ESL Support")
+   # end
+    
+   # it "should have the right title" do
+     # expect(page).not_to have_title('| Home')
+    #end
+ # end
+ 
+  require 'spec_helper'
+
+describe "Static pages" do
+
+  subject { page }
+
+  describe "Home page" do
+    before { visit root_path }
+
+    it { should have_content('ESL Support') }
+    it { should have_title(full_title('')) }
+    it { should_not have_title('| Home') }
   end
-  
+
   describe "Help page" do
-    
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help')
-    end
-    
-    it "should have the right title" do
-      visit '/static_pages/help'
-      expect(page).to have_title("#{base_title} | Help")
-    end
+    before { visit help_path }
+
+    it { should have_content('Help') }
+    it { should have_title(full_title('Help')) }
   end
-  
+
   describe "About page" do
+    before { visit about_path }
 
-    it "should have the content 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About Us')
-    end
-    
-    it "should have the right title" do
-      visit '/static_pages/about'
-      expect(page).to have_title("#{base_title} | About Us")
-    end
+    it { should have_content('About') }
+    it { should have_title(full_title('About Us')) }
   end
-  
-  describe "Contact Us page" do
 
-    it "should have the content 'Contact Us'" do
-      visit '/static_pages/contact'
-      expect(page).to have_content('Contact Us')
-    end
-    
-    it "should have the right title" do
-      visit '/static_pages/contact'
-      expect(page).to have_title("#{base_title} | Contact Us")
-    end
+  describe "Contact page" do
+    before { visit contact_path }
+
+    it { should have_content('Contact') }
+    it { should have_title(full_title('Contact')) }
   end
 end
+end
+  
+  

@@ -1,9 +1,17 @@
 <!-- Rails will call provide function and associate string 'Home'
 	 with label :title. Ruby's yield function is used to access
 	 that label.  -->
-<% provide(:title, 'Home') %>
+<div class="center hero-unit">
+	<h1>Welcome to ESL Support Website</h1>
+	
+	<h2> 
+		This is the home page for the ESL Support.
+	</h2>
+	
+	<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary"%>
+	
+</div>
 
-<h1>ESL Support</h1>
-<p>This is the home page for the ESL Support application.</p>
+<%= link_to image_tag("globe.png", alt: "Rails"), 'https://www.google.com'%>
 
 

@@ -1,16 +1,32 @@
+<!-- This file complements files in app/view/static_pages by removing 
+	unnecessary repetative code -->
 <!DOCTYPE html>
 <html>
+	
 <head>
-  <title>ESL Support | <%= yield(:title) %></title>
-  <%= stylesheet_link_tag    "application", media: "all",
+	<!-- Call the function full_title and get the title of the page and
+		forward it to static_pages. full_title is located in app/helpers/
+		application_helper.rb file-->
+	<title><%= full_title(yield(:title))%></title>
+  
+  	<!-- Adds application.css file to all media, i.e. printers, networks-->
+  	<!-- stlesheet_link_tag is function with string, indicating path of the
+  		styling sheet, and has with two elements, media type and use turbolink 
+  		feature -->
+  	<%= stylesheet_link_tag    "application", media: "all",
                                             "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+  	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  	<%= csrf_meta_tags %>
+  	<%= render 'layouts/shim' %>
 </head>
 <body>
+	<%= render 'layouts/header' %>
 
-<!-- Responsible for inserting the content of each page into layout-->
-<%= yield %>
+	<!-- Responsible for inserting the content of each page into layout-->
+	<div class="container">
+		<%= yield %>
+		<%= render 'layouts/footer'%>
+	</div>
 
 </body>
 </html>
